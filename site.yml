@@ -1,0 +1,19 @@
+---
+- name: Базовая настройка сервера
+  hosts: servers
+  become: yes
+  vars_files:
+    - secrets.yml
+  tasks:
+    - name: Обновление кэша apt
+      apt:
+        update_cache: yes
+
+    - name: Установка базовых утилит
+      apt:
+        name:
+          - htop
+          - curl
+          - wget
+          - net-tools
+        state: present
