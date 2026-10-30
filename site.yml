@@ -17,3 +17,29 @@
           - wget
           - net-tools
         state: present
+    - name: Установка nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+    - name: Установка ufw
+      apt:
+        name: ufw
+        state: present
+        update_cache: yes
+    - name: Разрешаем SSH в ufw
+      ufw:
+        rule: allow
+        port: '22'
+        proto: tcp
+
+    - name: Разрешаем HTTP в ufw
+      ufw:
+        rule: allow
+        port: '80'
+        proto: tcp
+
+    - name: Включаем ufw
+      ufw:
+        state: enabled
+        policy: deny
