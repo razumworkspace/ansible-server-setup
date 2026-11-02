@@ -13,3 +13,8 @@
 2. Настроить `inventory.ini` под свои серверы.
 3. Создать `secrets.yml` через `ansible-vault create secrets.yml` (внутри `ansible_become_pass: ваш_пароль`).
 4. Запустить: `ansible-playbook site.yml`.
+
+## Бэкап (Bash + Systemd)
+- Скрипт `backup.sh` архивирует `/etc/nginx` с датой в имени.
+- Настроена ротация (удаление архивов старше 7 дней).
+- Запуск автоматизирован через `systemd timer` (ежедневно).
