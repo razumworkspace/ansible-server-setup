@@ -16,3 +16,5 @@ monitoring/.env
 # Локальные бэкапы
 *.tar.gz
 backup/
+
+monitoring/alertmanager.yml
