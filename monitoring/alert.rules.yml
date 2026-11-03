@@ -1,0 +1,11 @@
+groups:
+  - name: disk_alerts
+    rules:
+      - alert: DiskSpaceHigh
+        expr: 100 - ((node_filesystem_avail_bytes{mountpoint="/", device="/dev/mapper/ubuntu--vg-ubuntu--lv"} * 100) / node_filesystem_size_bytes{mountpoint="/", device="/dev/mapper/ubuntu--vg-ubuntu--lv"}) > 80
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "🚨 ВНИМАНИЕ: Диск заполнен!"
+          description: "Сервер: {{ $labels.instance }}. Диск: {{ $labels.mountpoint }}. Занято: {{ $value | humanize }}%. Пора чистить!"
